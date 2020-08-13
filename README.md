@@ -10,8 +10,10 @@ Rutas de desarrollo en C:/xampp/htdocs/biblioteca-iap
 Estructura de base de datos: sql>biblioteca-iap.sql
 
 Credenciales default
------------- | -------------
-Email | admin@iap.com
-Contraseña | admin
+
+```
+Email: admin@iap.com
+Contraseña: admin
+```
 
 Estado: En desarrollo

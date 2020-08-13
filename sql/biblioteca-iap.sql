@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 01, 2016 at 12:44 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-08-2020 a las 08:03:41
+-- Versión del servidor: 10.4.13-MariaDB
+-- Versión de PHP: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `biblioteca-iap`
+-- Base de datos: `biblioteca-iap`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `address`
+-- Estructura de tabla para la tabla `address`
 --
 
 CREATE TABLE `address` (
@@ -37,7 +38,7 @@ CREATE TABLE `address` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `address`
+-- Volcado de datos para la tabla `address`
 --
 
 INSERT INTO `address` (`id_r`, `street`, `number`, `location`, `state`, `pc`, `country`) VALUES
@@ -50,7 +51,7 @@ INSERT INTO `address` (`id_r`, `street`, `number`, `location`, `state`, `pc`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `author`
+-- Estructura de tabla para la tabla `author`
 --
 
 CREATE TABLE `author` (
@@ -60,7 +61,7 @@ CREATE TABLE `author` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `author`
+-- Volcado de datos para la tabla `author`
 --
 
 INSERT INTO `author` (`id_a`, `name_a`, `last1_a`) VALUES
@@ -125,7 +126,7 @@ INSERT INTO `author` (`id_a`, `name_a`, `last1_a`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book`
+-- Estructura de tabla para la tabla `book`
 --
 
 CREATE TABLE `book` (
@@ -135,12 +136,12 @@ CREATE TABLE `book` (
   `language` varchar(50) NOT NULL,
   `place` varchar(80) DEFAULT NULL,
   `pages` int(5) NOT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `classification` varchar(100) NOT NULL,
   `edition` varchar(5) DEFAULT NULL,
   `copy` int(5) NOT NULL,
   `copy_loan` int(5) NOT NULL,
-  `notes_b` text,
+  `notes_b` text DEFAULT NULL,
   `cover` varchar(100) DEFAULT NULL,
   `release_date` date NOT NULL,
   `id_a` int(5) NOT NULL,
@@ -152,7 +153,7 @@ CREATE TABLE `book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `book`
+-- Volcado de datos para la tabla `book`
 --
 
 INSERT INTO `book` (`id_b`, `title`, `release_year`, `language`, `place`, `pages`, `description`, `classification`, `edition`, `copy`, `copy_loan`, `notes_b`, `cover`, `release_date`, `id_a`, `id_e`, `id_g`, `id_l`, `id_c`, `id_i`) VALUES
@@ -170,28 +171,28 @@ INSERT INTO `book` (`id_b`, `title`, `release_year`, `language`, `place`, `pages
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ci_sessions`
+-- Estructura de tabla para la tabla `ci_sessions`
 --
 
 CREATE TABLE `ci_sessions` (
   `session_id` varchar(40) COLLATE utf8_bin NOT NULL DEFAULT '0',
   `ip_address` varchar(16) COLLATE utf8_bin NOT NULL DEFAULT '0',
   `user_agent` varchar(150) COLLATE utf8_bin NOT NULL,
-  `last_activity` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `last_activity` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `user_data` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `ci_sessions`
+-- Volcado de datos para la tabla `ci_sessions`
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('f03e16d179e4139e323895a6764de936', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36', 1472726400, 'a:4:{s:9:"user_data";s:0:"";s:7:"user_id";s:1:"1";s:8:"username";s:11:"nadia-admin";s:6:"status";s:1:"1";}');
+('d19505cdf46ad5b8f412bb309cf6ce0c', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36', 1597297902, 'a:4:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:1:\"3\";s:8:\"username\";s:13:\"Administrador\";s:6:\"status\";s:1:\"1\";}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `collection`
+-- Estructura de tabla para la tabla `collection`
 --
 
 CREATE TABLE `collection` (
@@ -200,7 +201,7 @@ CREATE TABLE `collection` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `collection`
+-- Volcado de datos para la tabla `collection`
 --
 
 INSERT INTO `collection` (`id_c`, `name_c`) VALUES
@@ -211,7 +212,7 @@ INSERT INTO `collection` (`id_c`, `name_c`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `editorial`
+-- Estructura de tabla para la tabla `editorial`
 --
 
 CREATE TABLE `editorial` (
@@ -220,7 +221,7 @@ CREATE TABLE `editorial` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `editorial`
+-- Volcado de datos para la tabla `editorial`
 --
 
 INSERT INTO `editorial` (`id_e`, `name_e`) VALUES
@@ -237,7 +238,7 @@ INSERT INTO `editorial` (`id_e`, `name_e`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genre`
+-- Estructura de tabla para la tabla `genre`
 --
 
 CREATE TABLE `genre` (
@@ -246,7 +247,7 @@ CREATE TABLE `genre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `genre`
+-- Volcado de datos para la tabla `genre`
 --
 
 INSERT INTO `genre` (`id_g`, `name_g`) VALUES
@@ -257,7 +258,7 @@ INSERT INTO `genre` (`id_g`, `name_g`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `institute`
+-- Estructura de tabla para la tabla `institute`
 --
 
 CREATE TABLE `institute` (
@@ -266,7 +267,7 @@ CREATE TABLE `institute` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `institute`
+-- Volcado de datos para la tabla `institute`
 --
 
 INSERT INTO `institute` (`id_i`, `name_i`) VALUES
@@ -275,7 +276,7 @@ INSERT INTO `institute` (`id_i`, `name_i`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `library`
+-- Estructura de tabla para la tabla `library`
 --
 
 CREATE TABLE `library` (
@@ -284,7 +285,7 @@ CREATE TABLE `library` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `library`
+-- Volcado de datos para la tabla `library`
 --
 
 INSERT INTO `library` (`id_l`, `name_l`) VALUES
@@ -293,7 +294,7 @@ INSERT INTO `library` (`id_l`, `name_l`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loan`
+-- Estructura de tabla para la tabla `loan`
 --
 
 CREATE TABLE `loan` (
@@ -302,50 +303,38 @@ CREATE TABLE `loan` (
   `end_date` date NOT NULL,
   `advance` varchar(30) NOT NULL,
   `delivery` varchar(30) NOT NULL,
-  `notes_l` text,
+  `notes_l` text DEFAULT NULL,
   `id_b` varchar(100) NOT NULL,
   `id_r` int(5) NOT NULL,
   `credential` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `loan`
+-- Volcado de datos para la tabla `loan`
 --
 
 INSERT INTO `loan` (`id_ln`, `start_date`, `end_date`, `advance`, `delivery`, `notes_l`, `id_b`, `id_r`, `credential`) VALUES
 (1, '2016-06-23', '2016-06-30', 'Vencido', 'No', 'Ninguna observación', 'XIAP01000074', 1, 'IFE'),
 (3, '2016-08-01', '2016-09-15', 'Vencido', 'Si', '', 'XIAP01000220', 10, 'IFE'),
-(10, '2016-09-01', '2016-09-01', 'Vigente', 'No', '', 'XIAP01000018', 11, 'IFE');
+(10, '2016-09-01', '2016-09-01', 'Vencido', 'No', '', 'XIAP01000018', 11, 'IFE');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_attempts`
+-- Estructura de tabla para la tabla `login_attempts`
 --
 
 CREATE TABLE `login_attempts` (
   `id` int(11) NOT NULL,
   `ip_address` varchar(40) COLLATE utf8_bin NOT NULL,
   `login` varchar(50) COLLATE utf8_bin NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `login_attempts`
---
-
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(2, '192.168.0.48', 'nadialbrs@hotmail.com', '2016-06-13 15:04:36'),
-(3, '192.168.0.48', 'nadialbrs@hotmail.co', '2016-06-13 15:04:58'),
-(4, '192.168.0.48', 'nadialbrs@hotmail.co', '2016-06-13 15:05:51'),
-(5, '192.168.0.48', 'nadialbrs@hotmail.com', '2016-06-13 15:05:58'),
-(6, '192.168.0.48', 'nadialbrs@hotmail.co', '2016-06-13 15:06:29'),
-(7, '192.168.0.48', 'nadialbrs@hotmail.co', '2016-06-13 15:07:40');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reader`
+-- Estructura de tabla para la tabla `reader`
 --
 
 CREATE TABLE `reader` (
@@ -357,11 +346,11 @@ CREATE TABLE `reader` (
   `sex` varchar(9) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `email` varchar(80) DEFAULT NULL,
-  `notes_r` text
+  `notes_r` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reader`
+-- Volcado de datos para la tabla `reader`
 --
 
 INSERT INTO `reader` (`id_r`, `date_r`, `name_r`, `last1_r`, `last2_r`, `sex`, `phone`, `email`, `notes_r`) VALUES
@@ -374,7 +363,7 @@ INSERT INTO `reader` (`id_r`, `date_r`, `name_r`, `last1_r`, `last2_r`, `sex`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -382,8 +371,8 @@ CREATE TABLE `users` (
   `username` varchar(50) COLLATE utf8_bin NOT NULL,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(100) COLLATE utf8_bin NOT NULL,
-  `activated` tinyint(1) NOT NULL DEFAULT '1',
-  `banned` tinyint(1) NOT NULL DEFAULT '0',
+  `activated` tinyint(1) NOT NULL DEFAULT 1,
+  `banned` tinyint(1) NOT NULL DEFAULT 0,
   `ban_reason` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `new_password_key` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `new_password_requested` datetime DEFAULT NULL,
@@ -392,32 +381,33 @@ CREATE TABLE `users` (
   `last_ip` varchar(40) COLLATE utf8_bin NOT NULL,
   `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `activated`, `banned`, `ban_reason`, `new_password_key`, `new_password_requested`, `new_email`, `new_email_key`, `last_ip`, `last_login`, `created`, `modified`) VALUES
-(1, 'nadia-admin', '$2a$08$NbSV9VRisyanSEmqogzkHuaGfS6p2YidiaMOXxoLhpiGtFOqLQEWS', 'nadialbrs@hotmail.com', 1, 0, NULL, NULL, NULL, NULL, 'd5c8a50c83e310977fe08c93c286c984', '::1', '2016-09-01 07:42:52', '2016-06-08 18:13:13', '2016-09-01 05:42:52');
+(1, 'nadia-admin', '$2a$08$NbSV9VRisyanSEmqogzkHuaGfS6p2YidiaMOXxoLhpiGtFOqLQEWS', 'nadialbrs@gmail.com', 1, 0, NULL, NULL, NULL, NULL, 'd5c8a50c83e310977fe08c93c286c984', '::1', '2020-08-13 07:12:24', '2016-06-08 18:13:13', '2020-08-13 05:50:17'),
+(3, 'Administrador', '$2a$08$E7L1OmahJycPi/ERv0F9O.fpSXt.1bsDiBKPH.68BU8bR6NzJwD3m', 'admin@iap.com', 1, 0, NULL, NULL, NULL, NULL, 'a7b72a9f3e2eb5cfc744612c107a3c42', '::1', '2020-08-13 07:51:56', '2020-08-13 07:43:25', '2020-08-13 05:51:56');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_autologin`
+-- Estructura de tabla para la tabla `user_autologin`
 --
 
 CREATE TABLE `user_autologin` (
   `key_id` char(32) COLLATE utf8_bin NOT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT 0,
   `user_agent` varchar(150) COLLATE utf8_bin NOT NULL,
   `last_ip` varchar(40) COLLATE utf8_bin NOT NULL,
-  `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `last_login` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `user_autologin`
+-- Volcado de datos para la tabla `user_autologin`
 --
 
 INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
@@ -428,7 +418,7 @@ INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `las
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_profiles`
+-- Estructura de tabla para la tabla `user_profiles`
 --
 
 CREATE TABLE `user_profiles` (
@@ -439,23 +429,23 @@ CREATE TABLE `user_profiles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `address`
+-- Indices de la tabla `address`
 --
 ALTER TABLE `address`
   ADD KEY `address_ibfk_1` (`id_r`);
 
 --
--- Indexes for table `author`
+-- Indices de la tabla `author`
 --
 ALTER TABLE `author`
   ADD PRIMARY KEY (`id_a`);
 
 --
--- Indexes for table `book`
+-- Indices de la tabla `book`
 --
 ALTER TABLE `book`
   ADD PRIMARY KEY (`id_b`),
@@ -467,43 +457,43 @@ ALTER TABLE `book`
   ADD KEY `book_ibfk_6` (`id_i`);
 
 --
--- Indexes for table `ci_sessions`
+-- Indices de la tabla `ci_sessions`
 --
 ALTER TABLE `ci_sessions`
   ADD PRIMARY KEY (`session_id`);
 
 --
--- Indexes for table `collection`
+-- Indices de la tabla `collection`
 --
 ALTER TABLE `collection`
   ADD PRIMARY KEY (`id_c`);
 
 --
--- Indexes for table `editorial`
+-- Indices de la tabla `editorial`
 --
 ALTER TABLE `editorial`
   ADD PRIMARY KEY (`id_e`);
 
 --
--- Indexes for table `genre`
+-- Indices de la tabla `genre`
 --
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`id_g`);
 
 --
--- Indexes for table `institute`
+-- Indices de la tabla `institute`
 --
 ALTER TABLE `institute`
   ADD PRIMARY KEY (`id_i`);
 
 --
--- Indexes for table `library`
+-- Indices de la tabla `library`
 --
 ALTER TABLE `library`
   ADD PRIMARY KEY (`id_l`);
 
 --
--- Indexes for table `loan`
+-- Indices de la tabla `loan`
 --
 ALTER TABLE `loan`
   ADD PRIMARY KEY (`id_ln`),
@@ -511,106 +501,117 @@ ALTER TABLE `loan`
   ADD KEY `loan_ibfk_2` (`id_r`);
 
 --
--- Indexes for table `login_attempts`
+-- Indices de la tabla `login_attempts`
 --
 ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reader`
+-- Indices de la tabla `reader`
 --
 ALTER TABLE `reader`
   ADD PRIMARY KEY (`id_r`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_autologin`
+-- Indices de la tabla `user_autologin`
 --
 ALTER TABLE `user_autologin`
   ADD PRIMARY KEY (`key_id`,`user_id`);
 
 --
--- Indexes for table `user_profiles`
+-- Indices de la tabla `user_profiles`
 --
 ALTER TABLE `user_profiles`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `author`
+-- AUTO_INCREMENT de la tabla `author`
 --
 ALTER TABLE `author`
   MODIFY `id_a` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
 --
--- AUTO_INCREMENT for table `collection`
+-- AUTO_INCREMENT de la tabla `collection`
 --
 ALTER TABLE `collection`
   MODIFY `id_c` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `editorial`
+-- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
   MODIFY `id_e` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `genre`
+-- AUTO_INCREMENT de la tabla `genre`
 --
 ALTER TABLE `genre`
   MODIFY `id_g` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `institute`
+-- AUTO_INCREMENT de la tabla `institute`
 --
 ALTER TABLE `institute`
   MODIFY `id_i` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `library`
+-- AUTO_INCREMENT de la tabla `library`
 --
 ALTER TABLE `library`
   MODIFY `id_l` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `loan`
+-- AUTO_INCREMENT de la tabla `loan`
 --
 ALTER TABLE `loan`
   MODIFY `id_ln` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
--- AUTO_INCREMENT for table `login_attempts`
+-- AUTO_INCREMENT de la tabla `login_attempts`
 --
 ALTER TABLE `login_attempts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT for table `reader`
+-- AUTO_INCREMENT de la tabla `reader`
 --
 ALTER TABLE `reader`
   MODIFY `id_r` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
--- AUTO_INCREMENT for table `user_profiles`
+-- AUTO_INCREMENT de la tabla `user_profiles`
 --
 ALTER TABLE `user_profiles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `address`
+-- Filtros para la tabla `address`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`id_r`) REFERENCES `reader` (`id_r`) ON DELETE CASCADE;
 
 --
--- Constraints for table `book`
+-- Filtros para la tabla `book`
 --
 ALTER TABLE `book`
   ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`id_a`) REFERENCES `author` (`id_a`) ON DELETE CASCADE,
@@ -621,11 +622,12 @@ ALTER TABLE `book`
   ADD CONSTRAINT `book_ibfk_6` FOREIGN KEY (`id_i`) REFERENCES `institute` (`id_i`) ON DELETE CASCADE;
 
 --
--- Constraints for table `loan`
+-- Filtros para la tabla `loan`
 --
 ALTER TABLE `loan`
   ADD CONSTRAINT `loan_ibfk_1` FOREIGN KEY (`id_b`) REFERENCES `book` (`id_b`) ON DELETE CASCADE,
   ADD CONSTRAINT `loan_ibfk_2` FOREIGN KEY (`id_r`) REFERENCES `reader` (`id_r`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
